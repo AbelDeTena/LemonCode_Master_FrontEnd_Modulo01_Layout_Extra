@@ -1,0 +1,126 @@
+@use "./basics";
+
+body {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px 1fr 40px;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+
+  header {
+    grid-area: "header";
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1.5fr;
+    grid-template-areas:
+      "toolbar"
+      "page-title";
+
+    .toolbar {
+      grid-area: "toolbar";
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5em;
+      background-color: $color-bg-light;
+    }
+
+    .page-title {
+      grid-area: "page-title";
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      color: $color-bg-light;
+      font-size: large;
+      font-weight: 700;
+      padding-left: 0.8em;
+      background-color: $color-lemon;
+    }
+  }
+
+  .page-container {
+    grid-area: "content";
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "nav main";
+
+    nav {
+      grid-area: "nav";
+      background-color: $color-nav;
+
+      .menu-container {
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+
+        .menu-title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $color-bg-light;
+          font-weight: 700;
+          height: 2.5em;
+          text-transform: uppercase;
+        }
+
+        ul {
+          li {
+            display: flex;
+            align-items: center;
+            border: 1px solid $color-bg;
+            height: 2em;
+            padding: 0.5em;
+            background-color: $color-nav-light;
+            @include hover-bg($color-nav-light);
+          }
+        }
+      }
+    }
+
+    main {
+      grid-area: "main";
+      background-color: $color-bg;
+
+      .list {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+
+        .card {
+          height: 180px;
+          width: 350px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: 8px;
+          border: 1px solid black;
+          background-color: $color-bg-light;
+          @include hover-bg($color-bg-light);
+
+          img {
+            object-fit: cover;
+            border-radius: 100px;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    grid-area: "footer";
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em;
+    background-color: $color-nav-light;
+  }
+}
